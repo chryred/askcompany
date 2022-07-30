@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,9 +6,91 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram with Ask Comapy</title>
+    <link rel="stylesheet" href="{% static "bootstrap-4.6.1-dist/css/bootstrap.min.css" %}" />
+    <link rel="stylesheet" href="{% static "css/common.css" %}" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <script src="{% static "jquery-3.6.0.min.js" %}"></script>
+    <script src="{% static "jquery.form-3.51.0.js" %}"></script>
+    <script src="{% static "bootstrap-4.6.1-dist/js/bootstrap.min.js" %}"></script>
 </head>
 <body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="border-bottom mb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white">
+                        <h5 class="my-0 mr-md-auto font-weight-normal">
+                            <a href="{% url "root" %}">
+                              <i data-visualcompletion="css-img" aria-label="Instagram" class="sp_jY02qVAhKr8 sx_98e64d" role="img"></i>
+                            </a>
+                        </h5>
+                        <nav class="my-2 my-md-0 mr-md-3">
+                          <a class="p-2 text-dark" href="/explorer">
+                            <svg aria-label="사람 찾기" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><polygon fill="none" points="13.941 13.953 7.581 16.424 10.06 10.056 16.42 7.585 13.941 13.953" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon><polygon fill-rule="evenodd" points="10.06 10.056 13.949 13.945 7.581 16.424 10.06 10.056"></polygon><circle cx="12.001" cy="12.005" fill="none" r="10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle></svg>
+                          </a>
+                          <a class="p-2 text-dark" href="/accounts/activity/">
+                            <svg aria-label="활동 피드" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path></svg>
+                          </a>
+                          <a class="p-2 text-dark" href="{% url 'accounts:profile_edit' %}">
+                            <img src="{{ user.avatar_url }}" class="rounded-circle" style="width: 48px; height: 48px;" />
+                          </a>
+                        </nav>
+                        <!-- <a class="btn btn-outline-primary" href="#">Sign up</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% block content %}
     {% endblock content %}
+
+    <div class="border-top mt-3">
+        <div class="container">
+            <footer class="pt-4 my-md-5 pt-md-5">
+                <div class="row">
+                  <div class="col-12 col-md">
+                    <img class="mb-2" src="/docs/4.6/assets/brand/bootstrap-solid.svg" alt="footer이미지" width="24" height="24">
+                    <small class="d-block mb-3 text-muted">© 2017-2021</small>
+                  </div>
+                  <div class="col-6 col-md">
+                    <h5>Features</h5>
+                    <ul class="list-unstyled text-small">
+                      <li><a class="text-muted" href="#">Cool stuff</a></li>
+                      <li><a class="text-muted" href="#">Random feature</a></li>
+                      <li><a class="text-muted" href="#">Team feature</a></li>
+                      <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                      <li><a class="text-muted" href="#">Another one</a></li>
+                      <li><a class="text-muted" href="#">Last time</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                      <li><a class="text-muted" href="#">Resource</a></li>
+                      <li><a class="text-muted" href="#">Resource name</a></li>
+                      <li><a class="text-muted" href="#">Another resource</a></li>
+                      <li><a class="text-muted" href="#">Final resource</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-6 col-md">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                      <li><a class="text-muted" href="#">Team</a></li>
+                      <li><a class="text-muted" href="#">Locations</a></li>
+                      <li><a class="text-muted" href="#">Privacy</a></li>
+                      <li><a class="text-muted" href="#">Terms</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </footer>
+        </div>
+    </div>
 </body>
 </html>
